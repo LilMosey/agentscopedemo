@@ -25,12 +25,8 @@ GET http://localhost:8080/api/hello
 
 Expected response:
 
-```json
-{
-  "message": "AgentScope demo is running",
-  "framework": "Spring Boot + AgentScope Java",
-  "timestamp": "..."
-}
+```
+hello agent
 ```
 
 ## Maven Compatibility
