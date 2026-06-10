@@ -26,24 +26,25 @@ public class FirstAgent {
                 .build();
 
         RuntimeContext ctx = RuntimeContext.builder()
-                .sessionId("demo-session")
-                .userId("alice")
+                .sessionId("demo-session-1")
+                .userId("alice-1")
                 .build();
 
-        // 第一轮：自我介绍 + 当天的事
-        Msg block = agent.call(new UserMessage("我叫天宇，今天准备一个关于 ReAct 的技术分享。"), ctx).block();
-        List<TextBlock> contentBlocks = block.getContentBlocks(TextBlock.class);
-        for (TextBlock contentBlock : contentBlocks) {
-            System.out.println(contentBlock);
-        }
-
-        System.out.println("--------------");
-
-        // 第二轮：同 sessionId，自动恢复上一轮状态后回答
-        Msg block1 = agent.call(new UserMessage("我叫什么？我今天要干什么？"), ctx).block();
-        List<TextBlock> contentBlocks1 = block1.getContentBlocks(TextBlock.class);
-        for (TextBlock contentBlock : contentBlocks1) {
-            System.out.println(contentBlock);
-        }
+//        // 第一轮：自我介绍 + 当天的事
+//        Msg block = agent.call(new UserMessage("我叫唐杰，今天准备一个关于 ReAct 的技术分享。"), ctx).block();
+//        List<TextBlock> contentBlocks = block.getContentBlocks(TextBlock.class);
+//        for (TextBlock contentBlock : contentBlocks) {
+//            System.out.println(contentBlock);
+//        }
+//
+//        System.out.println("--------------");
+//
+//        // 第二轮：同 sessionId，自动恢复上一轮状态后回答
+//        Msg block1 = agent.call(new UserMessage("我叫什么？我今天要干什么？"), ctx).block();
+//        List<TextBlock> contentBlocks1 = block1.getContentBlocks(TextBlock.class);
+//        for (TextBlock contentBlock : contentBlocks1) {
+//            System.out.println(contentBlock);
+//        }
+        agent.call(new UserMessage("请把我的名字和今天要做的事写入工作区 你自己创建文件及文件夹。"), ctx).block();
     }
 }
