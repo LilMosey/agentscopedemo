@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: agent-scope-demo-1
+
+server:
+  port: 8081
+  servlet:
+    encoding:
+      enabled: true
+      charset: utf-8
