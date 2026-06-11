@@ -26,8 +26,8 @@ public class FirstAgent {
                 .build();
 
         RuntimeContext ctx = RuntimeContext.builder()
-                .sessionId("demo-session-2")
-                .userId("alice-2")
+                .sessionId("demo-session-3")
+                .userId("alice-3")
                 .build();
 
         // 第一轮：自我介绍 + 当天的事
