@@ -1,5 +1,8 @@
 package io.github.lilmosey.agentscopedemo.test;
 import io.agentscope.core.agent.RuntimeContext;
+import io.agentscope.core.event.AgentEventType;
+import io.agentscope.core.event.TextBlockDeltaEvent;
+import io.agentscope.core.event.ToolCallStartEvent;
 import io.agentscope.core.message.ContentBlock;
 import io.agentscope.core.message.Msg;
 import io.agentscope.core.message.TextBlock;
@@ -31,20 +34,32 @@ public class FirstAgent {
                 .build();
 
         // 第一轮：自我介绍 + 当天的事
-        Msg block = agent.call(new UserMessage("我叫唐杰，今天准备一个关于 ReAct 的技术分享。"), ctx).block();
-        List<TextBlock> contentBlocks = block.getContentBlocks(TextBlock.class);
-        for (TextBlock contentBlock : contentBlocks) {
-            System.out.println(contentBlock);
-        }
-
-        System.out.println("--------------");
-
-        // 第二轮：同 sessionId，自动恢复上一轮状态后回答
-        Msg block1 = agent.call(new UserMessage("我叫什么？我今天要干什么？"), ctx).block();
-        List<TextBlock> contentBlocks1 = block1.getContentBlocks(TextBlock.class);
-        for (TextBlock contentBlock : contentBlocks1) {
-            System.out.println(contentBlock);
-        }
+//        Msg block = agent.call(new UserMessage("我叫唐杰，今天准备一个关于 ReAct 的技术分享。"), ctx).block();
+//        List<TextBlock> contentBlocks = block.getContentBlocks(TextBlock.class);
+//        for (TextBlock contentBlock : contentBlocks) {
+//            System.out.println(contentBlock);
+//        }
+//
+//        System.out.println("--------------");
+//
+//        // 第二轮：同 sessionId，自动恢复上一轮状态后回答
+//        Msg block1 = agent.call(new UserMessage("我叫什么？我今天要干什么？"), ctx).block();
+//        List<TextBlock> contentBlocks1 = block1.getContentBlocks(TextBlock.class);
+//        for (TextBlock contentBlock : contentBlocks1) {
+//            System.out.println(contentBlock);
+//        }
 //        agent.call(new UserMessage("请把我的名字和今天要做的事写入工作区 你自己创建文件及文件夹。"), ctx).block();
+        agent.streamEvents(new UserMessage("帮我把今天的关键点列三条。"))
+                .doOnNext(event -> {
+                    if (event.getType() == AgentEventType.TEXT_BLOCK_DELTA) {
+                        // 模型返回的流式文本片段 —— 追加到界面或标准输出
+                        System.out.print(((TextBlockDeltaEvent) event).getDelta());
+                    } else if (event.getType() == AgentEventType.TOOL_CALL_START) {
+                        // 智能体即将调用工具 —— 展示调用信息
+                        System.out.println("\n[tool] " + ((ToolCallStartEvent) event).getToolCallName());
+                    }
+                    // 其他事件：思考块、工具结果、回复结束等
+                })
+                .blockLast();
     }
 }
