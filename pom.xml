@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.13</version>
+        <version>3.5.8</version>
         <relativePath/>
     </parent>
 
@@ -19,11 +19,13 @@
     <description>Spring Boot demo for AgentScope-based agent RAG experiments.</description>
     <modules>
         <module>agentscope2</module>
+        <module>agentscope1</module>
     </modules>
 
     <properties>
         <java.version>21</java.version>
         <agentscope2.version>2.0.0-RC3</agentscope2.version>
+        <agentscope1.version>1.0.12</agentscope1.version>
     </properties>
 
     <dependencies>
