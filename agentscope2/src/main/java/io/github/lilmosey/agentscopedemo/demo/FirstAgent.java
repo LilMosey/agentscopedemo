@@ -1,16 +1,12 @@
-package io.github.lilmosey.agentscopedemo.test;
+package io.github.lilmosey.agentscopedemo.demo;
 import io.agentscope.core.agent.RuntimeContext;
 import io.agentscope.core.event.AgentEventType;
 import io.agentscope.core.event.TextBlockDeltaEvent;
 import io.agentscope.core.event.ToolCallStartEvent;
-import io.agentscope.core.message.ContentBlock;
-import io.agentscope.core.message.Msg;
-import io.agentscope.core.message.TextBlock;
 import io.agentscope.core.message.UserMessage;
 import io.agentscope.harness.agent.HarnessAgent;
 import io.agentscope.harness.agent.memory.compaction.CompactionConfig;
 import java.nio.file.Paths;
-import java.util.List;
 
 public class FirstAgent {
     public static void main(String[] args) {
