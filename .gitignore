@@ -1,6 +1,6 @@
 target/
 *.class
-
+!**/src/main/resources/application-test.yaml
 .idea/
 *.iml
 .vscode/
