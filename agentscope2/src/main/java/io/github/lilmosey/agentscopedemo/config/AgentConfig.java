@@ -26,6 +26,7 @@ public class AgentConfig {
                         .builder()
                         .apiKey(modelConfig.getAxAppKey())
                         .baseUrl(modelConfig.getBaseUrl())
+                        .modelName(modelConfig.getModelName())
                         .stream(true)
                         .formatter(new DeepSeekFormatter())
                         .build())

@@ -13,4 +13,7 @@ public class ModelConfig {
 
     @Value("${deepseek.ai.baseUrl}")
     private String baseUrl;
+
+    @Value("${deepseek.ai.modelName}")
+    private String modelName;
 }

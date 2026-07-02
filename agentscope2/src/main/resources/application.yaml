@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: test
   application:
     name: agent-scope-demo-2
 
