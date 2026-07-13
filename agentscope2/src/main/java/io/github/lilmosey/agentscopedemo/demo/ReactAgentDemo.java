@@ -11,10 +11,7 @@ import io.github.lilmosey.agentscopedemo.tool.WeatherTool;
 
 public class ReactAgentDemo {
     public static void main(String[] args) {
-        Toolkit toolkit = new Toolkit();
-        toolkit.registerTool(new WeatherTool());
-        toolkit.registerTool(new WriteFileTool());
-        toolkit.registerTool(new ReadFileTool());
+
         ReActAgent agent =
                 ReActAgent.builder()
                         .name("my_agent")
@@ -23,7 +20,6 @@ public class ReactAgentDemo {
                         // 切换其他厂商时改成 "openai:gpt-5.5" / "anthropic:claude-sonnet-4-5"
                         // / "gemini:gemini-2.0-flash" / "ollama:llama3" 即可。
                         .model("dashscope:qwen-plus")
-                        .toolkit(toolkit)
                         .build();
 
 //        Msg block = agent.call(new UserMessage("你好,今天洛杉矶的天气是")).block();
